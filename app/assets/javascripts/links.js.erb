@@ -1,34 +1,31 @@
-jQuery(document).ready(function ($) {
-
-    var addLink = function (link, url_title) {
-        $('#links').append(
-            "<li> <a href="
-            + link
-            + " target = '_blank'>"
-            + url_title
-            + "</a></li>");
-    };
-
-    $('.btn').on('click', function (event) {
-        event.preventDefault();
-        var $formUrl = $('#url');
-        var linkParams = {
-            url: $formUrl.val(),
-            user_id: $formUrl.data('id')
-        };
-        $.ajax({
-            type: 'POST',
-            url: '/links.json',
-            data: linkParams,
-            success: function (newLink) {
-                console.log("working!!");
-                addLink(newLink.url, newLink.url_title);
-            },
-            error: function (xhr) {
-                console.log("Not working");
-                console.log(xhr.status);
-                console.log(xhr.responseText);
-            }
-        })
-    });
-});
+//jQuery(document).ready(function ($) {
+//
+//    var addLink = function (link) {
+//        $('#links').append(
+//                "<li> <a href=" + link.url + " target = '_blank'>" + "test" + "</a></li>"
+//        );
+//    };
+//
+//    $('.btn').on('click', function (event) {
+//        event.preventDefault();
+//        var $formUrl = $('#url');
+//        var linkParams = {
+//            url: $formUrl.val(),
+//            user_id: $formUrl.data('id')
+//        };
+//        $.ajax({
+//            type: 'POST',
+//            url: '/links.json',
+//            data: linkParams,
+//            success: function (newLink) {
+//                console.log("working!!");
+//                addLink(newLink);
+//            },
+//            error: function (xhr) {
+//                console.log("Not working");
+//                console.log(xhr.status);
+//                console.log(xhr.responseText);
+//            }
+//        });
+//    });
+//});

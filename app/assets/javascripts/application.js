@@ -14,3 +14,36 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+jQuery(document).ready(function ($) {
+
+    var addLink = function (link) {
+        $('#links').append(
+            "<li data-id='" + link.link_id + "'> <a href=" + link.url + " target = '_blank'>" + link.url_title + "</a></li>"
+        );
+    };
+
+    $('.new-link-btn').on('click', function (event) {
+        event.preventDefault();
+        var $formUrl = $('#url');
+        var linkParams = {
+            url: $formUrl.val(),
+            user_id: $formUrl.data('id')
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/links.json',
+            data: linkParams,
+            success: function (newLink) {
+                console.log(newLink);
+                addLink(newLink);
+                $('#url').val("");
+            },
+            error: function (xhr) {
+                console.log("Not working");
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+            }
+        });
+    });
+});

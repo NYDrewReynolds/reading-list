@@ -6,7 +6,7 @@
 
           <%= text_field_tag :url, nil, :data => {id: current_user.id}, :placeholder => "Submit a new link..." %>
 
-          <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
+          <%= submit_tag "Submit", class: "btn btn-large btn-primary new-link-btn" %>
       <% end %>
     </div>
   </div>
@@ -15,8 +15,9 @@
       <h2>Links to Read</h2>
       <ol id="links">
         <% current_user.links_to_read.each do |link| %>
-        <li>
-          <a href="<%= link.url %>" target="_blank"><%= link.url_title %></a>
+        <li data-id="<%= link.id %>">
+          <strong><a href="<%= link.url %>" target="_blank"><%= link.url_title %></a></strong><br>
+          <button class="btn btn-success btn-sm" type="submit">Mark as Read</button>
         </li>
         <% end %>
       </ol>
@@ -25,8 +26,9 @@
       <h2>Links Marked as Read</h2>
       <ol id="links-read">
         <% current_user.links_read.each do |link| %>
-            <li>
-              <%= link.url %>
+            <li data-id="<%= link.id %>">
+              <strong><a href="<%= link.url %>" target="_blank"><%= link.url_title %></a></strong><br>
+              <button class="btn btn-warning btn-sm" type="submit">Mark as Unread</button>
             </li>
         <% end %>
       </ol>

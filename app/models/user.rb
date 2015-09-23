@@ -6,18 +6,18 @@ class User < ActiveRecord::Base
   has_many :links
 
   def links_read_count
-    @links_read_count ||= links.where("read = true").count
+    @links_read_count ||= links.read.count
   end
 
   def links_read
-    links.where("read = true")
+    links.read
   end
 
   def links_to_read_count
-    @links_to_read_count ||= links.where("read = false").count
+    @links_to_read_count ||= links.unread.count
   end
 
   def links_to_read
-    links.where("read = false")
+    links.unread
   end
 end

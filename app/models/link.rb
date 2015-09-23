@@ -3,6 +3,8 @@ class Link < ActiveRecord::Base
   validates  :url, :url => true
   require 'pismo'
 
+  enum read: [:unread, :read]
+
   def url_title
     return @url_title if defined? @url_title
     @url_title = begin
