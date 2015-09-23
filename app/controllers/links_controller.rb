@@ -1,5 +1,4 @@
 class LinksController < ApplicationController
-  require 'byebug'
 
   def index
   end
