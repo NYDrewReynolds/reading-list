@@ -18,4 +18,8 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov'
+  gem 'selenium-webdriver'
 end
