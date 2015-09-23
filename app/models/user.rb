@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :links
+
+  def links_read
+    links.where("read = true").count
+  end
 end

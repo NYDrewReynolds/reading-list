@@ -13,30 +13,16 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active">
-              <%= link_to "Home", root_path %>
+              <%= link_to "Home", links_path %>
             </li>
-            <li class="active">
-              <%= link_to "About", about_path %>
-            </li>
-            <% if current_user && current_user.is?('admin') %>
-                <li class="active">
-                  <%= link_to "Admin Dashboard", restaurant_admin_dashboard_index_path(owned_restaurant) %>
-                </li>
-            <% end %>
           </ul>
           <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right" , style="float:right" , style="padding: 20px">
+            <ul class="nav navbar-nav navbar-right" style="float:right, padding: 20px">
               <% if current_user %>
-                  <%= "Welcome #{current_user.nickname ? current_user.nickname : current_user.full_name}!" %>
-                  <%= link_to "My Profile", edit_user_path(current_user) %> /
+                  <%= "Welcome #{current_user.first_name }!" %>
+                  <%= link_to "My Profile", user_path(current_user) %> /
                   <%= link_to "Logout", logout_path, method: :delete %>
-              <% else %>
-                  <%= render 'shared/login_form' %>
               <% end %>
-              <div class='cart-container' style="display:inline">
-                <%= link_to(image_tag("Shopping-Cart.png"), cart_edit_path) %>
-                <span class='cart_quantity'><%= cart.size %></span>
-              </div>
             </ul>
           </div>
         </div>
