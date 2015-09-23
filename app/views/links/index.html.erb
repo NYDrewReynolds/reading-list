@@ -1,3 +1,29 @@
 <div class="container">
-  
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      New Link Form Here!!!
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <h2>Links to Read: <%= current_user.links_to_read_count %></h2>
+      <ol>
+        <% current_user.links_to_read.each do |link| %>
+        <li>
+          <a href="<%= link.url %>" target="_blank"><%= link.url_title %></a>
+        </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-md-4">
+      <h2>Links Marked as Read: <%= current_user.links_read_count %></h2>
+      <ol>
+        <% current_user.links_read.each do |link| %>
+            <li>
+              <%= link.url %>
+            </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
 </div>

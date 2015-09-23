@@ -4,11 +4,11 @@
   <div class="row">
     <div class="col-md-3 col-md-offset-3">
       <h1>Links Submitted</h1>
-      <h3><%= current_user.links.count %></h3>
+      <h3><%= current_user.links_to_read_count %></h3>
     </div>
     <div class="col-md-3">
       <h1>Links Marked as Read</h1>
-      <h3><%= current_user.links_read %></h3>
+      <h3><%= current_user.links_read_count %></h3>
     </div>
   </div>
 </div>
