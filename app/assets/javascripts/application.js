@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
 
     var addLink = function (link) {
         $('#links').append(
-            "<li data-id='" + link.link_id + "'> <a href=" + link.url + " target = '_blank'>" + link.url_title + "</a></li>"
+            "<li data-id='" + link.link_id + "'><strong><a href=" + link.url + " target = '_blank'>" + link.url_title + "</a></strong><br><button class='btn btn-success btn-sm unread-link-btn' type='submit'>Mark as Read</button></li>"
         );
     };
 
@@ -46,4 +46,61 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+
+    var addReadLink = function (link) {
+        $('#links-read').append(
+            "<li data-id='" + link.link_id + "'><strong><a href=" + link.url + " target = '_blank'>" + link.url_title + "</a></strong><br><button class='btn btn-warning btn-sm read-link-btn' type='submit'>Mark as Unread</button></li>"
+        );
+    };
+
+    $('.unread-link-btn').on('click', function (event) {
+        event.preventDefault();
+        var $listItem = this.closest('li');
+        var linkId = $listItem.getAttribute('data-id');
+
+        $.ajax({
+            type: 'PUT',
+            url: '/links/'+ linkId + '.json',
+            data: {link_id: linkId},
+            success: function (newLink) {
+                console.log(newLink);
+                $listItem.remove();
+                addReadLink(newLink);
+            },
+            error: function (xhr) {
+                console.log("Not working");
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
+    var addUnreadLink = function (link) {
+        $('#links').append(
+            "<li data-id='" + link.link_id + "'><strong><a href=" + link.url + " target = '_blank'>" + link.url_title + "</a></strong><br><button class='btn btn-success btn-sm unread-link-btn' type='submit'>Mark as Read</button></li>"
+        );
+    };
+
+    $('.read-link-btn').on('click', function (event) {
+        event.preventDefault();
+        var $listItem = this.closest('li');
+        var linkId = $listItem.getAttribute('data-id');
+
+        $.ajax({
+            type: 'PUT',
+            url: '/links/' + linkId + '.json',
+            data: {link_id: linkId},
+            success: function (newLink) {
+                console.log(newLink);
+                $listItem.remove();
+                addUnreadLink(newLink);
+            },
+            error: function (xhr) {
+                console.log("Not working");
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
 });

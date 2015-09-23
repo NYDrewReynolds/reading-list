@@ -15,10 +15,10 @@
       <h2>Links to Read</h2>
       <ol id="links">
         <% current_user.links_to_read.each do |link| %>
-        <li data-id="<%= link.id %>">
-          <strong><a href="<%= link.url %>" target="_blank"><%= link.url_title %></a></strong><br>
-          <button class="btn btn-success btn-sm" type="submit">Mark as Read</button>
-        </li>
+            <li data-id="<%= link.id %>">
+              <strong><a href="<%= link.url %>" target="_blank"><%= link.url_title %></a></strong><br>
+              <button class="btn btn-success btn-sm unread-link-btn" type="submit">Mark as Read</button>
+            </li>
         <% end %>
       </ol>
     </div>
@@ -28,7 +28,7 @@
         <% current_user.links_read.each do |link| %>
             <li data-id="<%= link.id %>">
               <strong><a href="<%= link.url %>" target="_blank"><%= link.url_title %></a></strong><br>
-              <button class="btn btn-warning btn-sm" type="submit">Mark as Unread</button>
+              <button class="btn btn-warning btn-sm read-link-btn" type="submit">Mark as Unread</button>
             </li>
         <% end %>
       </ol>

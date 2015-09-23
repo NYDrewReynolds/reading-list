@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  # def new
-  #   redirect_to root_path
-  # end
 
   def create
     user = User.find_by(email: params[:email])
@@ -20,9 +17,4 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  private
-
-  def correct_destination(user)
-    user.is?('admin') ? restaurant_admin_dashboard_index_path(owned_restaurant) : root_path
-  end
 end
